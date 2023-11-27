@@ -1,0 +1,53 @@
+spring:
+  mvc:
+    async:
+      request-timeout: 60000
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+security:
+  allow-credentials: true
+  allowed-public-apis:
+    - /_ah/warmup
+  allowed-methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - OPTIONS
+  allowed-headers:
+    - Authorization
+    - Origin
+    - Content-Type
+    - Accept
+    - Accept-Encoding
+    - Accept-Language
+    - Access-Control-Allow-Origin
+    - Access-Control-Allow-Headers
+    - Access-Control-Request-Method
+    - X-Requested-With
+    - X-Auth-Token
+    - X-Xsrf-Token
+    - Cache-Control
+    - Id-Token
+  exposed-headers:
+    - X-Xsrf-Tokens
+server:
+  port: 8080
+  error:
+    include-message: always
+logging:
+  level:
+    io:
+      r2dbc:
+        postgresql:
+          QUERY: DEBUG
+          PARAM: DEBUG

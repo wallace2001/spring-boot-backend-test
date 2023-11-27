@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.2'
+    id "com.google.osdetector" version "1.7.1"
+}
+
+group = 'br.com.heitorflorido'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation "javax.inject:javax.inject:${project.ext.javaxInject}"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.data:spring-data-r2dbc'
+    implementation "io.r2dbc:r2dbc-h2:${project.ext.r2dbcH2}"
+    implementation "io.r2dbc:r2dbc-pool:${project.ext.r2dbcPool}"
+    implementation "io.projectreactor.addons:reactor-extra:${project.ext.reactorExtra}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:${project.ext.jackson}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${project.ext.jackson}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${project.ext.springBoot}"
+    compileOnly "io.jsonwebtoken:jjwt-api:${project.ext.jjwt}"
+    implementation "io.jsonwebtoken:jjwt-impl:${project.ext.jjwt}"
+    implementation "io.jsonwebtoken:jjwt-jackson:${project.ext.jjwt}"
+    implementation "jakarta.validation:jakarta.validation-api:${project.ext.jakartaValidation}"
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+
+    if (osdetector.classifier == "osx-aarch_64") {
+        runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.96.Final:${osdetector.classifier}")
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootJar {
+    archiveFileName = "app.jar"
+}

@@ -1,0 +1,41 @@
+ext {
+    jackson = "2.15.2"
+    jakartaValidation = "3.0.2"
+    javaxInject = "1"
+    jjwt = "0.11.4"
+    jupiter = "5.7.1"
+    jupiterPlatform = "1.7.1"
+    lombok = "1.18.28"
+    mockito = "3.0.0"
+    mockitoJupiter = "2.23.0"
+    protonPack = "1.16"
+    reactorTest = "3.5.8"
+    reactorCore = "3.5.8"
+    reactorExtra = "3.5.1"
+    r2dbcPool = "0.9.1.RELEASE"
+    r2dbcH2 = "0.9.1.RELEASE"
+    springBoot = "2.7.2"
+}
+
+dependencies {
+    // annotationProcessor
+    annotationProcessor "org.projectlombok:lombok:$lombok"
+
+    // compileOnly
+    compileOnly "org.projectlombok:lombok:$lombok"
+
+    // compile
+
+
+    // testCompile
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiter"
+    testImplementation "org.junit.platform:junit-platform-runner:$jupiterPlatform"
+    testImplementation "org.junit.platform:junit-platform-commons:$jupiterPlatform"
+
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoJupiter"
+
+    testImplementation "org.projectlombok:lombok:$lombok"
+
+    // testRuntimeOnly
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiter"
+}
