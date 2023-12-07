@@ -39,8 +39,11 @@ public class SecurityConfig {
             .formLogin(AbstractHttpConfigurer::disable)
             .httpBasic(AbstractHttpConfigurer::disable)
             .exceptionHandling(e -> e.authenticationEntryPoint(restAuthenticationEntryPoint()))
-            .authorizeHttpRequests(a -> a.anyRequest().permitAll())
-            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+            .authorizeHttpRequests(a -> a
+                .antMatchers("/h2-console/**").permitAll() // Permitir acesso ao console H2
+                .anyRequest().permitAll())
+            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .headers(h -> h.frameOptions().sameOrigin());
 
         return http.build();
     }

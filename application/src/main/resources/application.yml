@@ -1,4 +1,13 @@
 spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    sql-script-encoding: UTF-8
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;CHARSET=UTF-8
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
   mvc:
     async:
       request-timeout: 60000
@@ -7,8 +16,10 @@ spring:
   jackson:
     default-property-inclusion: non_null
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
+        ddl-auto: update
         show_sql: true
         format_sql: true
 
@@ -41,7 +52,7 @@ security:
   exposed-headers:
     - X-Xsrf-Tokens
 server:
-  port: 8080
+  port: 8081
   error:
     include-message: always
 logging:

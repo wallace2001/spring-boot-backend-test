@@ -1,6 +1,7 @@
 dependencies {
     // compile
     implementation "javax.inject:javax.inject:${project.ext.javaxInject}"
+    implementation "org.springframework.data:spring-data-commons:2.7.2"
     implementation "com.fasterxml.jackson.core:jackson-databind:${project.ext.jackson}"
     implementation "io.projectreactor:reactor-core:${project.ext.reactorCore}"
     implementation "io.projectreactor.addons:reactor-extra:${project.ext.reactorExtra}"
